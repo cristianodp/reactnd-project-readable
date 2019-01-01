@@ -1,5 +1,5 @@
 # Readable
-This project was made as part of the Nanodegree Program at Udacity. The solution allowed to create, comment and vote on posts.
+This project was made as part of the Nanodegree Program at Udacity. The solution allows to create, comment and vote on posts.
 
 
 
