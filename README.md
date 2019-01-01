@@ -12,13 +12,13 @@ This project was made as part of the Nanodegree Program at Udacity. The solution
 
 ## How run the project
 ### backend 
-* go to folder backend on terminal
+* go to backend folder on terminal
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 * The backend will run on http://localhost:3001
 
 ### frontend 
-* go to folder backend on terminal
+* go to frontend folder on terminal
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 * The frontend will run on [http://localhost:3000](http://localhost:3000)
