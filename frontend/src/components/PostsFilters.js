@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
@@ -15,7 +16,7 @@ class PostsFilters extends Component {
     const value = e.target.value;
     const { filters } = this.props;
     filters[propName] = value;
-    this.props.handleChangeFiltersPost(filters);
+    this.props.handleChangeFiltersPost(filters)
   };
 
   render() {
@@ -30,17 +31,17 @@ class PostsFilters extends Component {
               select
               label="Category"
               value={filters.categorySelected ? filters.categorySelected : ""}
-              onChange={this.handleChange("categorySelected")}
+              // onChange={this.handleChange("categorySelected")}
               margin="normal"
             >
-              <MenuItem key={0} value={"all"}>
+              <MenuItem component={Link} to={"/"} key={0} value={"all"}>
                 {"All"}
               </MenuItem>
               {categories.map(it => (
-                <MenuItem key={it} value={it}>
+                <MenuItem component={Link} to={"/"+it} key={it} value={it}>
                   {it.charAt(0).toUpperCase() + it.slice(1)}
                 </MenuItem>
-              ))}
+               ))}
             </TextField>
           </Grid>
 
@@ -48,8 +49,8 @@ class PostsFilters extends Component {
             <TextField
               id="standard-name"
               label="Search"
-              className={classes.textField }
-              value={filters.search? filters.search : ""}
+              className={classes.textField}
+              value={filters.search ? filters.search : ""}
               onChange={this.handleChange("search")}
               margin="normal"
             />
@@ -98,8 +99,10 @@ const styles = theme => ({
   }
 });
 
-function mapStateToProps({ categories, posts }) {
+function mapStateToProps({ categories, posts }, props) {
   const { filters } = posts;
+  const { match } = props;
+  
   return {
     categories:
       categories &&
@@ -107,9 +110,9 @@ function mapStateToProps({ categories, posts }) {
         .map(key => categories[key].name)
         .sort(),
     filters: filters
-      ? filters
+      ? { ...filters, categorySelected: match.params.category ? match.params.category : "all" }
       : {
-          categorySelected: "",
+          categorySelected: match.params.category ? match.params.category : "all",
           order: "",
           search: ""
         }

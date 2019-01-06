@@ -64,7 +64,8 @@ class Post extends Component {
       category,
       voteScore,
       commentCount,
-      id
+      id,
+      filters
     } = post;
 
     return (
@@ -100,6 +101,7 @@ class Post extends Component {
             commentCount={commentCount ? commentCount : 0}
             showComments={true}
             voteScore={voteScore}
+            category={category}
             id={id}
             onClickLike={this.handleOnClickVote(id, true)}
             onClickDislike={this.handleOnClickVote(id, false)}
@@ -147,6 +149,7 @@ const mapDispatchToProps = dispatch =>
 
 function mapStateToProps({ posts }, { id }) {
   const { data } = posts;
+  
   return {
     post: data ? data[id] : null
   };

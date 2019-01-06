@@ -20,12 +20,12 @@ export function getOrderSortFunction(order) {
 }
 
 export function getFilterPost(filter) {
-  let { word = "", categorySelected = "" } = filter;
+  let { search = "", categorySelected = "" } = filter;
   if (categorySelected === "all") categorySelected = "";
   
   return it =>
-    (( it.title && it.title.toUpperCase().includes(word.toUpperCase())) ||
-     ( it.author && it.author.toUpperCase().includes(word.toUpperCase()) )||
-     ( it.body  && it.body.toUpperCase().includes(word.toUpperCase()))) &&
+    (( it.title && it.title.toUpperCase().includes(search.toUpperCase())) ||
+     ( it.author && it.author.toUpperCase().includes(search.toUpperCase()) )||
+     ( it.body  && it.body.toUpperCase().includes(search.toUpperCase()))) &&
     (it.category && it.category.toUpperCase().includes(categorySelected.toUpperCase()));
 }

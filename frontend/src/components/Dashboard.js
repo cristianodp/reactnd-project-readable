@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Typography from "@material-ui/core/Typography";
@@ -25,11 +25,10 @@ class Dashboard extends React.Component {
   };
 
   render() {
-    const { postsArray, classes } = this.props;
-
+    const { postsArray, classes, match } = this.props;
     return (
-      <div>
-        {<PostsFilters handleOnChangeFilters />}
+      <Fragment>
+        {<PostsFilters match={match} handleOnChangeFilters />}
         <Typography
           className={classes.title}
           gutterBottom
@@ -41,7 +40,7 @@ class Dashboard extends React.Component {
         <ul>
           {postsArray.length > 0 &&
             postsArray.map(it => (
-              <li key={it.id} >
+              <li key={it.id}>
                 <Post id={it.id} />
               </li>
             ))}
@@ -61,7 +60,7 @@ class Dashboard extends React.Component {
         >
           <AddIcon />
         </Fab>
-      </div>
+      </Fragment>
     );
   }
 }
@@ -69,7 +68,7 @@ class Dashboard extends React.Component {
 const styles = {
   title: {
     textAlign: "center",
-    paddingTop: 8,
+    paddingTop: 8
   },
   fab: {
     position: "absolute",
@@ -78,10 +77,10 @@ const styles = {
   }
 };
 
-function mapStateToProps({ posts }) {
+function mapStateToProps({ posts }, props) {
   const { data, filters } = posts;
-
-  console.log("mapStateToProps", data);
+  const { match } = props;
+  filters.categorySelected = match.params.category  ? match.params.category : "all";
   const postsArray = data
     ? Object.keys(data)
         .map(key => data[key])
@@ -90,7 +89,8 @@ function mapStateToProps({ posts }) {
     : [];
 
   return {
-    postsArray
+    postsArray,
+    match: props.match
   };
 }
 

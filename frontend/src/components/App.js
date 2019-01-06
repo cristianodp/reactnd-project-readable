@@ -24,8 +24,8 @@ class App extends Component {
             {!loading && (
               <Fragment>
                 <Route path="/" exact component={Dashboard} />
-                <Route path="/posts" exact component={Dashboard} />
-                <Route path="/posts/:id" component={PostPage} />
+                <Route path="/:category" exact component={Dashboard} />
+                <Route path="/:category/posts/:id" component={PostPage} />
               </Fragment>
             )}
           </div>

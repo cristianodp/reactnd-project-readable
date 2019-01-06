@@ -19,19 +19,20 @@ const ActionButtons = props => {
     id,
     onClickLike,
     onClickDislike,
-    onClickDelete
+    onClickDelete,
+    category
   } = props;
 
   return (
     <CardActions className={classes.containerButtons}>
       {showComments && (
         <Badge
-          badgeContent={commentCount?commentCount:0}
+          badgeContent={commentCount ? commentCount : 0}
           color="primary"
           classes={{ badge: classes.badge }}
         >
           <Button
-            to={`/posts/${id}`}
+            to={`${category}/posts/${id}`}
             component={Link}
             size="small"
             color="primary"
@@ -72,7 +73,7 @@ ActionButtons.propTypes = {
   onClickLike: PropTypes.func.isRequired,
   onClickDelete: PropTypes.func.isRequired,
   voteScore: PropTypes.number.isRequired,
-  commentCount: PropTypes.number,
+  commentCount: PropTypes.number
 };
 
 const styles = {
