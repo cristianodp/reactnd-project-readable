@@ -25,7 +25,7 @@ class App extends Component {
               <Fragment>
                 <Route path="/" exact component={Dashboard} />
                 <Route path="/:category" exact component={Dashboard} />
-                <Route path="/:category/posts/:id" component={PostPage} />
+                <Route path="/:category/:id" component={PostPage} />
               </Fragment>
             )}
           </div>

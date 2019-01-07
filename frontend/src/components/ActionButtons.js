@@ -32,7 +32,7 @@ const ActionButtons = props => {
           classes={{ badge: classes.badge }}
         >
           <Button
-            to={`${category}/posts/${id}`}
+            to={`${category}/${id}`}
             component={Link}
             size="small"
             color="primary"
